@@ -5,22 +5,21 @@ import android.databinding.Bindable;
 
 import com.example.mvvmapplication.BR;
 import com.example.mvvmapplication.model.User;
+import com.example.mvvmapplication.model.UserRegistration;
 
-public class LoginViewModel  extends BaseObservable {
-    private User user;
+public class RegistrationViewModel extends BaseObservable {
 
+    private UserRegistration registration;
 
-    private String successMessage = "Login was successful";
+    private String successMessage = "Registration was successful";
     private String errorMessage = "Email or Password not valid";
 
     @Bindable
     public String toastMessage = null;
 
-
-    public LoginViewModel() {
-        user = new User("", "");
+    public RegistrationViewModel() {
+        this.registration = new UserRegistration("","","","","");
     }
-
     public String getToastMessage() {
         return toastMessage;
     }
@@ -33,15 +32,15 @@ public class LoginViewModel  extends BaseObservable {
     }
 
     public void afterEmailTextChanged(CharSequence s) {
-        user.setEmail(s.toString());
+        registration.setEmail(s.toString());
     }
 
     public void afterPasswordTextChanged(CharSequence s) {
-        user.setPassword(s.toString());
+        registration.setPassword(s.toString());
     }
 
-    public void onLoginClicked() {
-        if (user.isInputDataValid())
+    public void onRegistrationClicked() {
+        if (registration.isInputDataValid())
             setToastMessage(successMessage);
         else
             setToastMessage(errorMessage);
